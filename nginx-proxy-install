@@ -1,0 +1,35 @@
+10  sudo yum update
+   11  sudo yum install nginx -y
+   12  sudo systemctl enable nginx
+   13  sudo systemctl start nginx
+   14  sudo systemctl status nginx
+   15  curl ifconfig.co   ==this is to confirm nginx installation
+   18  sudo nano /etc/nginx/nginx.conf
+   19  sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bkup
+   20  sudo nano /etc/nginx/nginx.conf 
+   events{
+worker_connections 1024;
+}
+http { keepalive_timeout 5;
+upstream tomcatServers {
+  keepalive 50;
+
+  server 172.31.38.44:8080;
+
+}
+server {
+   listen 80;
+location / {
+        proxy_set_header  X-Real-lP $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header  X-Forwarded-Proto $scheme;
+        proxy_set_header        Host $host;
+        proxy_pass http://tomcatServers;
+}
+}
+}
+   22  sudo nginx -t
+   23  sudo nginx -s reload
+   24  sudo systemctl restart nginx
+   25  curl ifconfig.co
+   26  sudo setsebool -P httpd_can_network_connect true
