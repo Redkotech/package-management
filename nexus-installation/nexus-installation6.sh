@@ -6,12 +6,12 @@
 #1. Create nexus user to manage the nexus
 # As a good security practice, Nexus is not advised to run nexus service as a root user, so create a new user called nexus and grant sudo access to manage nexus services as follows.
 
-useradd nexus
+sudo useradd nexus
 
 #4 Give sudo access to nexus user
 
 sudo echo "nexus ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/nexus
-sudo su - sonar
+sudo su - nexus
 
 cd /opt
 
@@ -23,10 +23,10 @@ sudo yum install java-11-openjdk-devel java-1.8.0-openjdk-devel -y
 
 # 2. Download nexus software and extract it (unzip)
 
-sudo wget http://download.sonatype.com/nexus/3/nexus-3.15.2-01-unix.tar.gz 
+sudo wget https://download.sonatype.com/nexus/3/nexus-3.41.1-01-unix.tar.gz 
 
-sudo tar -zxvf nexus-3.15.2-01-unix.tar.gz
-mv /opt/nexus-3.15.2-01 /opt/nexus
+sudo tar -zxvf nexus-3.41.1-01-unix.tar.gz
+sudo mv /opt/nexus-3.41.1-01 /opt/nexu
 
 
 #5 Change the owner and group permissions to /opt/nexus and /opt/sonatype-work directories.
@@ -39,8 +39,8 @@ sudo chmod -R 775 /opt/sonatype-work
 
 #6 Open /opt/nexus/bin/nexus.rc file and  uncomment run_as_user parameter and set as nexus user.
 
-vi /opt/nexus/bin/nexus.rc
-run_as_user="nexus"
+echo "run_as_user="nexus" " >> /opt/nexus/bin/nexus.rc
+
 
 #7 CONFIGURE NEXUS TO RUN AS A SERVICE 
 
