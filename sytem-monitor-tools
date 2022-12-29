@@ -4,3 +4,9 @@
    sudo yum install python-pip
    
 ## click on this link to install glances https://glances.readthedocs.io/en/latest/quickstart.html
+
+## Installing bashtop / bpytop 
+   run: snap bashtop -y
+             OR
+        snap bpytop
+        
