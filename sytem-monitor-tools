@@ -1,0 +1,6 @@
+##
+## Install python with the below commands:
+   sudo yum install epel-release
+   sudo yum install python-pip
+   
+## click on this link to install glances https://glances.readthedocs.io/en/latest/quickstart.html
