@@ -2,6 +2,18 @@
 ## Install python with the below commands:
    sudo yum install epel-release
    sudo yum install python-pip
+         OR   
+ ## Installation of python3
+sudo yum install python3
+
+##Pip Installation
+sudo yum install python3-pip
+
+   RESOLVING PIP NOT FOUND AFTER INSTALLATION 
+RUN: alias pip="/usr/bin/python3 -m pip "
+
+Refresh current terminal session.
+RUN: source ~/.bash_profile
    
 ## click on this link to install glances https://glances.readthedocs.io/en/latest/quickstart.html
 
